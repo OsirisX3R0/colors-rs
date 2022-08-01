@@ -1,3 +1,7 @@
+mod cmyk;
+mod hex;
+mod rgb;
+
 #[cfg(test)]
 mod tests {
     #[test]
