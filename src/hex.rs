@@ -1,16 +1,16 @@
 use std::convert::From;
 use substring::Substring;
 
-use crate::cmyk::CMYK;
+use crate::cmyk::CMYKColor;
 use crate::color::Color;
-use crate::rgb::RGB;
+use crate::rgb::RGBColor;
 
-/// A hexidecimal value representing a color
-pub struct Hex(String);
+/// A representation of a color in hexidecimal
+pub struct HexColor(String);
 
-impl From<String> for Hex {
-  fn from(value: String) -> Hex {
-    Hex(value)
+impl From<String> for HexColor {
+  fn from(value: String) -> HexColor {
+    HexColor(value)
   }
 }
 
@@ -37,12 +37,12 @@ fn color_value(val: &str) -> u8 {
   first + second
 }
 
-impl Color for Hex {
-  fn to_hex(self: Self) -> Hex {
+impl Color for HexColor {
+  fn to_hex(self: Self) -> HexColor {
     self
   }
 
-  fn to_rgb(self: Self) -> RGB {
+  fn to_rgb(self: Self) -> RGBColor {
     let hex = self.0;
     let first = hex.substring(0, 2);
     let second = hex.substring(2, 4);
@@ -52,10 +52,10 @@ impl Color for Hex {
     let g = color_value(second);
     let b = color_value(third);
 
-    RGB::from(vec![r, g, b])
+    RGBColor::from(vec![r, g, b])
   }
 
-  fn to_cmyk(self: Self) -> CMYK {
+  fn to_cmyk(self: Self) -> CMYKColor {
     self.to_rgb().to_cmyk()
   }
 }

@@ -1,26 +1,26 @@
 use std::convert::From;
 
 use crate::color::Color;
-use crate::hex::Hex;
-use crate::rgb::RGB;
+use crate::hex::HexColor;
+use crate::rgb::RGBColor;
 
-/// A hexidecimal value representing a color
-pub struct CMYK(u8, u8, u8, u8);
+/// A representation of a colors cyan, magenta, yellow and black values
+pub struct CMYKColor(u8, u8, u8, u8);
 
-impl From<Vec<u8>> for CMYK {
-  fn from(values: Vec<u8>) -> CMYK {
-    CMYK(values[0], values[1], values[2], values[3])
+impl From<Vec<u8>> for CMYKColor {
+  fn from(values: Vec<u8>) -> CMYKColor {
+    CMYKColor(values[0], values[1], values[2], values[3])
   }
 }
 
-impl Color for CMYK {
-  fn to_cmyk(self: Self) -> CMYK {
+impl Color for CMYKColor {
+  fn to_cmyk(self: Self) -> CMYKColor {
     self
   }
 
-  fn to_rgb(self: Self) -> RGB {}
+  fn to_rgb(self: Self) -> RGBColor {}
 
-  fn to_hex(self: Self) -> Hex {
+  fn to_hex(self: Self) -> HexColor {
     self.to_rgb().to_hex()
   }
 }
