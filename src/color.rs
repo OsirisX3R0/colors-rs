@@ -1,7 +1,9 @@
-use crate::hex::Hex
+use crate::cmyk::CMYK;
+use crate::hex::Hex;
+use crate::rgb::RGB;
 
 pub trait Color {
-  pub fn to_rgb(self: Self) -> RGB
-  pub fn to_cmyk(self: Self) -> CMYK
-  pub fn to_hex(self: Self) -> Hex
+  fn to_rgb(self) -> RGB;
+  fn to_cmyk(self) -> CMYK;
+  fn to_hex(self) -> Hex;
 }

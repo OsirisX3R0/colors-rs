@@ -1,4 +1,5 @@
 mod cmyk;
+mod color;
 mod hex;
 mod rgb;
 
