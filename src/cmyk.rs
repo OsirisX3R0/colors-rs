@@ -18,7 +18,15 @@ impl Color for CMYKColor {
     self
   }
 
-  fn to_rgb(self: Self) -> RGBColor {}
+  fn to_rgb(self: Self) -> RGBColor {
+    let CMYKColor(c, m, y, k) = self;
+
+    let r = 255 * (1 - c) * (1 - k);
+    let g = 255 * (1 - m) * (1 - k);
+    let b = 255 * (1 - y) * (1 - k);
+
+    RGBColor::from(vec![r, g, b])
+  }
 
   fn to_hex(self: Self) -> HexColor {
     self.to_rgb().to_hex()
